@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas David — Portfólio Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0f14;
+      --surface: #161a23;
+      --border: #22283a;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --text: #e8eaf0;
+      --muted: #7a8099;
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(13,15,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 99px;
+      padding: 4px 14px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    #hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    #hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+
+    /* SEÇÕES */
+    section {
+      padding: 100px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+    }
+
+    section > p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    /* SOBRE */
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .sobre-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .sobre-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .sobre-card p { color: var(--muted); font-size: 0.9rem; }
+
+    /* PROJETOS */
+    .projetos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .projeto-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .projeto-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .projeto-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(124,92,252,0.12);
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 14px;
+    }
+
+    .projeto-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .projeto-card p { color: var(--muted); font-size: 0.88rem; }
+
+    .projeto-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* CONTATO */
+    .contato-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .contato-wrapper iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 48px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav { padding: 16px 24px; }
+      #hero, section { padding-left: 24px; padding-right: 24px; }
+      .sobre-grid, .projetos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Lucas David</div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-tag">Portfólio Hub — UniCEUB 2026</div>
+    <h1>Estudante de <span>Ciência da Computação</span> construindo o futuro.</h1>
+    <p>Desenvolvedor em formação, apaixonado por IA, automação e produtos que resolvem problemas reais. Este portfólio integra GitHub e Google Workspace como parte de um projeto acadêmico de arquitetura de soluções.</p>
+    <div class="hero-btns">
+      <a href="#projetos" class="btn-primary">Ver Projetos</a>
+      <a href="https://github.com/lucassempreceub07" target="_blank" class="btn-secondary">GitHub →</a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="section-label">Quem sou eu</div>
+    <h2>Sobre Mim</h2>
+    <p>18 anos, cursando Ciência da Computação no UniCEUB (Brasília). Focado em desenvolvimento de software, IA aplicada e construção de produtos digitais.</p>
+    <div class="sobre-grid">
+      <div class="sobre-card">
+        <h3>🎓 Formação</h3>
+        <p>Ciência da Computação — UniCEUB, Brasília. Cursando disciplinas de Banco de Dados, Arquitetura de Computadores e Matemática Discreta.</p>
+      </div>
+      <div class="sobre-card">
+        <h3>🤖 Tecnologias</h3>
+        <p>React, Firebase, Gemini AI, C, MySQL, GitHub Actions. Experiência com integração de APIs e automação de deploys.</p>
+      </div>
+      <div class="sobre-card">
+        <h3>🚀 Projeto em Destaque</h3>
+        <p>Auxílio AI — aplicativo de produtividade pessoal com IA integrada (Gemini 2.5 Flash), planos comerciais e deploy em Firebase.</p>
+      </div>
+      <div class="sobre-card">
+        <h3>📍 Localização</h3>
+        <p>Brasília, DF — Brasil. Disponível para colaborações remotas e projetos acadêmicos.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <div class="section-label">O que já fiz</div>
+    <h2>Projetos Destacados</h2>
+    <p>Trabalhos acadêmicos e projetos pessoais desenvolvidos ao longo da graduação.</p>
+    <div class="projetos-grid">
+      <div class="projeto-card">
+        <div class="projeto-tag">IA · SaaS</div>
+        <h3>Auxílio AI</h3>
+        <p>App de produtividade com IA integrada (Gemini 2.5 Flash). Conta com planos Free, Pro e Ultra, autenticação Firebase e deploy automatizado.</p>
+        <a href="https://auxilioai.com.br" target="_blank" class="projeto-link">Ver projeto →</a>
+      </div>
+      <div class="projeto-card">
+        <div class="projeto-tag">DevOps · CI/CD</div>
+        <h3>Portfólio Hub</h3>
+        <p>Este portfólio — hospedado no GitHub Pages com esteira de deploy automático via GitHub Actions e integração com Google Workspace.</p>
+        <a href="#" class="projeto-link">Você está aqui →</a>
+      </div>
+      <div class="projeto-card">
+        <div class="projeto-tag">Banco de Dados</div>
+        <h3>Modelagem MySQL</h3>
+        <p>Schema de banco de dados para sistema escolar desenvolvido na disciplina de BD do UniCEUB. Modelagem completa com relacionamentos e normalização.</p>
+        <a href="https://github.com/lucassempreceub07" target="_blank" class="projeto-link">Ver no GitHub →</a>
+      </div>
+      <div class="projeto-card">
+        <div class="projeto-tag">C · Algoritmos</div>
+        <h3>Projetos em C</h3>
+        <p>Implementações em linguagem C para disciplinas de computação: algoritmos, estruturas de dados e programação de baixo nível.</p>
+        <a href="https://github.com/lucassempreceub07" target="_blank" class="projeto-link">Ver no GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="section-label">Fale comigo</div>
+    <h2>Contato</h2>
+    <p>Envie uma mensagem pelo formulário integrado com o Google Workspace.</p>
+    <div class="contato-wrapper">
+      <!-- SUBSTITUA A URL ABAIXO PELO LINK DO SEU GOOGLE FORMS -->
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSeqQqPeZQCKxTZ1eh7sFglVfy4nG9BgEegwqJC_s6la8ZBAbw/viewform?embedded=true"
+        title="Formulário de Contato — Google Forms">
+        Carregando formulário...
+      </iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Lucas David · Trabalho Acadêmico UniCEUB · Arquitetura de Soluções</p>
+    <p style="margin-top:8px;">Desenvolvido com assistência do <a href="https://gemini.google.com" target="_blank">Google Gemini 1.5 Flash</a> · Hospedado no <a href="https://github.com/lucassempreceub07" target="_blank">GitHub Pages</a></p>
+  </footer>
+
+</body>
+</html>
