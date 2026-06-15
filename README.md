@@ -1,4 +1,4 @@
-# Portfólio Hub — Lucas David
+# Portfólio Hub — Lucas Cerqueira
 
 Portfólio pessoal e profissional hospedado no GitHub Pages, desenvolvido como projeto acadêmico para a disciplina de Arquitetura de Soluções — UniCEUB 2026.
 
